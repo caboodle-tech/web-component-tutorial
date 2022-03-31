@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A quick reference crash course guide to Web Components. Bookmark this page as your go to Web Component cheat sheet.">
+    <title>Quick Reference Guide</title>
+    <script src="../js/custom-element-polyfill.js"></script>
+    <script src="../js/app-header.js"></script>
+    <script src="../js/app-footer.js"></script>
+    <script src="../js/pre-expand.js"></script>
+    <script src="../js/highlight.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/hljs.stackoverflow.css">
+</head>
+<body>
+    <header is="app-header" title="Quick Reference Guide"></header>
+    <main>
+        <section>
+            <p>
+                This page is meant to be a quick reference guide to get you up and running with Web Components fast. You can also refer back to it as a cheat sheet in case you ever need a refresher on the core concepts of custom Web Components.
+            </p>
+            <p>
+                The following HTML demonstrates how you would use custom elements (web components) on a web page:
+            </p>        
+<pre-code lang="html">
+&lt;pre-code lang="html"&gt;
+    &lt;!-- This is an example of an autonomous web component --&gt;
+&lt;/pre-code&gt;
+
+&lt;pre is="pre-code"&gt;
+    &lt;!-- This is an example of a built-in web component --&gt;
+&lt;/pre&gt;
+</pre-code>
+            <p>
+                The following JavaScript demonstrates how you would build custom web components. The code below contains comments with references that are explained below the code example:
+            </p>    
+<pre-code lang="javascript">
+/**
+* A template for an autonomous custom web component. [1A]
+*
+* @class FooElement
+* @extends {HTMLElement}
+*/
+class FooElement extends HTMLElement {
+
+    // [2A]
+
+    adoptedCallback() { // [4]
+        /**
+        * Do something when the custom element is
+        * moved to a new document.
+        */
+    }
+
+    attributeChangedCallback() { // [4]
+        /**
+        * Do something when the custom element's
+        * attribute(s) are added, removed, or changed.
+        */
+    }
+
+    connectedCallback() { // [4]
+        /**
+        * Do something when the custom element is
+        * first connected to the document's DOM.
+        */
+        this.sdom = this.attachShadow({ mode: 'open' }); // [3]
+
+        setTimeout(() => { // [5]
+            /**
+            * Using `setTimeout in this fashion is a
+            * hack to ensure consistency in all browsers
+            * and is only needed if your custom element
+            * relies on or manipulates the DOM.
+            */
+        }, 0);
+    }
+
+    disconnectedCallback() { // [4]
+        /**
+        * Do something when the custom element is
+        * disconnected from the document's DOM.
+        */
+    }
+}
+
+customElements.define('foo-element', FooElement); // [6A]
+
+/*===============================================================*/
+
+/**
+* A template for a built-in custom web component. [1B]
+*
+* @class BarElement
+* @extends {HTMLElement}
+*/
+class BarElement extends HTMLDivElement {
+
+    constructor() { // [2B]
+        // You must run the parents constructor first.
+        super();
+        /**
+        * Now you can do basic setup work here, call methods
+        * to do something, or do nothing here and wait for
+        * `connectedCallback` to be invoked.
+        */
+    }
+
+    /**
+    * Everything else [3, 4, 5] remains the same
+    * for built-in custom elements with one major
+    * exception! [7]
+    */
+}
+
+customElements.define('bar-element', BarElement, { extends: 'div' }); // [6B] [7]
+</pre-code>
+            <ol>
+                <li>
+                    Web Components come in two flavors:
+                    <ol type="A">
+                        <li>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#autonomous_custom_elements" target="_blank">Autonomous</a> that extends from the base <code>HTMLElement</code> and not a built-in (pre-existing) HTML element.
+                        </li>
+                        <li>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#customized_built-in_elements" target="_blank">Built-in</a> that inherits from and extends a built-in (pre-existing) HTML element; for example an <code>HTMLDivElement</code>.
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#constructor" target="_blank">Constructor</a> of the web component class differs:
+                    <ol type="A">
+                        <li>
+                            Autonomous web components can have a constructor but it is usually not needed. You can not perform any DOM related operations on the custom element itself because it is not attached to the DOM yet; use the <code>connectedCallback</code> method instead.
+                        </li>
+                        <li>
+                            Built-in web components that extend existing HTML Elements should usually have a constructor. Always make sure to call <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#super_class_calls_with_super" target="_blank">super()</a></code> first then you can perform any setup operations you need. If you need to manipulate the DOM structure of the web component in any way, you should use the <code>connectedCallback</code> method instead; the custom component's children may not exist yet on the DOM tree.
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    If your web component has a complex HTML structure or manipulates a lot of style rules you should use a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank">Shadow DOM</a>. Autonomous web components can always use a Shadow DOM, but built-in web components are limited to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow" target="_blank">a list</a> of supported elements.
+                </li>
+                <li>
+                    Both autonomous and built-in web components have <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks" target="_blank">lifestyle callbacks</a> allowing you to easily perform operations based on important lifestyle events.
+                </li>
+                <li>
+                    It is common practice to load web component scripts in the <code>head</code> of a web page, allowing the browser to immediately process custom components that are encountered. An unfortunate side effect of this process is the entire DOM is usually not ready when <code>connectedCallback</code> is invoked. If your custom component has children you wish to manipulate this will ensure they exist first.
+                </li>
+                <li>
+                    All custom web components must include a name that has a dash in it and be registered (officially <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define" target="_blank">defined</a>) with the browser. The rest of the process then differs slightly:
+                    <ol type="A">
+                        <li>
+                            Autonomous components (currently) <strong>must not</strong> provide an options object.
+                        </li>
+                        <li>
+                            Built-in components <strong>must always</strong> provide an options object specifying what HTML element is being extended. This is required because you can extend HTML elements that do not have their own unique class and instead use <code>HTMLElement</code> just like an autonomous component does.
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    If you use only autonomous web components you will have 100% modern browser support. If you plan to use built-in components:
+                    <ul>
+                        <li>
+                            The powers that be over WebKit/Safari refuse to implement full support for built-in elements.  If you plan to use built-in components and must support the <a href="https://caniuse.com/usage-table" target="_blank">~1% of the population</a> actively using WebKit/Safari browsers, then you will need to include <a href="https://github.com/ungap/custom-elements#readme" target="_blank">this polyfill</a>; its very lightweight. This site uses the <code>es.js</code> version because we only care about modern standards and modern web browsers so the polyfill is even smaller.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <footer is="app-footer"></footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A demo of a simple custom autonomous web component: tool tip.">
+    <title>Simple Autonomous Demo</title>
+    <script src="../../js/custom-element-polyfill.js"></script>
+    <script src="../../js/app-header.js"></script>
+    <script src="../../js/app-footer.js"></script>
+    <script src="../../js/pre-expand.js"></script>
+    <script src="../../js/highlight.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/hljs.stackoverflow.css">
+    <!-- Demo Web Component -->
+    <script src="tooltip.js"></script>
+</head>
+<body>
+    <header is="app-header" title="Simple Autonomous Custom Web Component"></header>
+    <main>
+        <section>
+            <h1 class="title">Scenario</h1>
+            <p>
+                Your building an application that requires gathering large amounts of information from users. It has been determined that adding tool tips to some of the more difficult questions would aid users in completing the forms faster. Your team has decided they want the tool tips to look identical and sit inline with the questions to improve the users experience.
+            </p>
+        </section>
+        <section>
+            <h1 class="title">Demo</h1>
+            <p>
+                Since an autonomous web component does not extend an existing element, there is no comparison between a built-in HTML element and our custom element in this demo. See the <a href="../built-in/index.html">built-in demo</a> of this custom component for more examples.
+            </p>
+            <p>
+                Here is our custom <code>tool-tip</code> element in action:
+            </p>
+            <tool-tip>
+                This is a placeholder message for this tool tip. You would normal describe or explain something to the user here.
+            </tool-tip>
+        </section>
+        <section>
+            <h1 class="title">Code</h1>
+            <p>
+                This is all that the HTML needed to create this custom element:
+            </p>
+<pre class="hljs"><code class="language-html">&lt;tool-tip&gt;
+    Tool tip message here...
+&lt;/tool-tip&gt;
+</code></pre>
+        </section>
+        <section>
+            <h1 class="title">Points to Ponder</h1>
+            <ul>
+                <li>
+                    <p>
+                        This is an incomplete example. If you demo this page on a mobile device you will see that our tooltip overflows the page and becomes illegible. This can be fixed by adding an event listener to our custom element that will position the tool tip appropriately when its opened.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        We improved the styling dilemma and simplified our custom elements class compared to the <a href="../built-in/index.html">built-in demo</a> by using the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">shadow DOM</a>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Because we made a truly custom element not extended from a built-in semantic element, we had to manage accessibility support ourselves. We used the semantic <code>button</code> element with <code>role="tooltip"</code> and a custom event listener to toggle the tool tip open and closed. We also had to toggle the <code>aria-hidden</code> attribute on the tool tip <code>p</code> element.
+                    </p>
+                    <p>
+                        This example by no means accounts for all edge cases of user accessibility, only the bare minimum has been done to create a functional demo. For more information please explore the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank">ARIA</a> documentation.
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer is="app-footer"></footer>
+</body>
+</html>
