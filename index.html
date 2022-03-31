@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A quick reference crash course guide to Web Components. Bookmark this page as your go to Web Component cheat sheet.">
+    <title>Web Components</title>
+    <script src="js/custom-element-polyfill.js"></script>
+    <script src="js/app-header.js"></script>
+    <script src="js/app-footer.js"></script>
+    <script src="js/pre-expand.js"></script>
+    <script src="js/highlight.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hljs.stackoverflow.css">
+    <!-- Demo Web Component -->
+    <script src="js/banned-img.js"></script>
+</head>
+<body>
+    <header is="app-header" title="Web Components" home="true"></header>
+    <main>
+        <section>
+            <h1>What is a Web Component?</h1>
+            <p>
+                In a nutshell Web Components, also called custom components, are a modern standard that allows developers to encapsulate and reuse unique functionality in web apps. Instead of having to duplicate large amounts of HTML, nest various elements, or create multiple JavaScript functions and event listeners, developers can now rely on Web Components.
+            </p>
+            <p>
+                A more technical explication: Web Components use serval modern web technologies (<a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements" target="_blank">Custom elements</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank">Shadow DOM</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots" target="_blank">HTML Templates</a>) to allow developers "to [easily] create reusable custom elements &ndash; with their functionality encapsulated away from the rest of your code &ndash; and [utilized] in [any] web [application]." (MDN, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">Web Components</a>)
+            </p>
+        </section>
+        <section>
+            <h1>Component vs. Web Component</h1>
+            <p>
+                You have probably heard the term <strong>component</strong> being used before. In web design it usually means reusable code (the component) that encapsulates a particular feature or functionality. This component can then be added to any web page to provide the feature or functionality to the users. Every major web development framework (some examples pictured below) either offers the ability to build with or create components that adhere to the frameworks specifications.
+            </p>
+            <div class="center">
+                <banned-img src="assets/angular.webp"></banned-img>
+                <banned-img src="assets/react.webp"></banned-img>
+                <banned-img src="assets/svelte.webp"></banned-img>
+                <banned-img src="assets/vue.webp"></banned-img>
+            </div>
+            <p>
+                None of these frameworks use actual Web Components &ndash; they are actually one of the biggest reasons the Web Component standard was created &ndash; but they all <a href="https://custom-elements-everywhere.com/" target="_blank">can implement</a> (use) Web Components; some more easily than others. A Web Component, or custom component, is a native web standard and does not rely on a framework, library, transpiling, or compiling to work.
+            </p>
+        </section>
+        <section>
+            <h1>Web Components in Action</h1>
+            <p>
+                Fun fact, this entire website is using multiple custom web components to display content and enhance your experience on the site. You can learn about these components and more in the examples below. There is also a <a href="reference/guide.html">quick reference guide</a> (cheat sheet) that will help you make your first Web Component.
+            </p>
+        </section>
+        <section class="row">
+            <div class="column">
+                <h2>Simple Examples</h2>
+                <ul>
+                    <li>
+                        <a href="simple/autonomous/index.html">Autonomous Tool Tip</a>
+                    </li>
+                    <li>
+                        <a href="simple/built-in/index.html">Built-in Tool Tip</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Moderate Examples</h2>
+                <ul>
+                    <li>
+                        ...
+                    </li>
+                    <li>
+                        ...
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Advanced Examples</h2>
+                <ul>
+                    <li>
+                        ...
+                    </li>
+                    <li>
+                        ...
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer is="app-footer"></footer>
+</body>
+</html>
