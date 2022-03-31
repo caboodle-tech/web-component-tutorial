@@ -37,7 +37,8 @@ class AppFooter extends HTMLElement {
     #getSourceStatement() {
         const div = document.createElement('DIV');
         div.classList.add('source');
-        div.innerHTML = `Source code is <a href="#" target="_blank">MIT licensed</a><br>and maintained on <a href="#" target="_blank">${this.#icon.github}</a>`;
+        // eslint-disable-next-line max-len
+        div.innerHTML = `Source code is <a href="https://github.com/caboodle-tech/web-component-tutorial/blob/main/README.md" target="_blank">MIT licensed</a><br>and maintained on <a href="https://github.com/caboodle-tech/web-component-tutorial" target="_blank">${this.#icon.github}</a>`;
         return div;
     }
 }
