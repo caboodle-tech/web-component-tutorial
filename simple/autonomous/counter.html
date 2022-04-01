@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A demo of a simple custom autonomous web component: tool tip.">
+    <title>Autonomous Counter Demo</title>
+    <script src="../../js/custom-element-polyfill.js"></script>
+    <script src="../../js/app-header.js"></script>
+    <script src="../../js/app-footer.js"></script>
+    <script src="../../js/pre-expand.js"></script>
+    <script src="../../js/highlight.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/hljs.stackoverflow.css">
+    <!-- Demo Web Component -->
+    <script src="keep-count.js"></script>
+</head>
+<body>
+    <header is="app-header" title="Autonomous Counter Web Component"></header>
+    <main>
+        <section>
+            <h1 class="title">Scenario</h1>
+            <p>
+                Your part of a team that is helping build software for carnivals and fairs. You have been tasked with creating a reusable counter component that can be used by ride operators and gate attendants to quickly count how many people rode a ride or entered a particular gate.
+            </p>
+        </section>
+        <section>
+            <h1 class="title">Demo</h1>
+            <p>
+                Since an autonomous web component does not extend an existing element, there is no comparison between a built-in HTML element and our custom element in this demo. Here is our custom <code>keep-count</code> element in action:
+            </p>
+            <keep-count></keep-count>
+        </section>
+        <section>
+            <h1 class="title">Code</h1>
+            <p>
+                This is all the HTML needed to create this custom element:
+            </p>
+<pre-code lang="html">
+&lt;!-- We just have to reference our custom component --&gt;
+&lt;keep-count&gt;&lt;/keep-count&gt;
+</pre-code>
+            <p>
+                After our custom element is render this is the HTML that is automatically put in place:
+            </p>
+<pre-code lang="html">
+&lt;keep-count&gt;
+    #shadow-root (open)
+    &lt;style&gt;
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 2rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        div {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+    &lt;/style&gt;
+    &lt;div&gt;
+        &lt;button&gt;-&lt;/button&gt;
+        &lt;button&gt;+&lt;/button&gt;
+        &lt;div&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/keep-count&gt;
+</pre-code>
+        </section>
+        <section>
+            <h1 class="title">Points to Ponder</h1>
+            <ul>
+                <li>
+                    <p>
+                        This is an incomplete example. We could add additional styles, features, and connections to the counter. A simple feature we could add is saving the current count in local storage and restoring it on page reloads. An advanced example is we could have counters sync with an API to auto report their numbers.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        User accessibility needs to be addressed for this component. We used <code>button</code> elements to increase or decrease the counter so there is partial support, but we are missing <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank">ARIA</a> roles to help visually impaired users understand what those buttons actually do.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        We improved styling and simplified our custom element by using the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank">shadow DOM</a>.
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer is="app-footer"></footer>
+</body>
+</html>

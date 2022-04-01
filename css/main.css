@@ -293,13 +293,13 @@ main section pre {
     0 2px 7px hsla(0, 0%, 0%, 0.04);
 }
 
-main section ul {
+main section.row ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-main section ul li {
+main section.row ul li {
   padding-bottom: 7px;
 }
 

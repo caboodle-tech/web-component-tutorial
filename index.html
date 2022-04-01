@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/hljs.stackoverflow.css">
     <!-- Demo Web Component -->
-    <script src="js/banned-img.js"></script>
+    <script src="js/banned-imgs.js"></script>
 </head>
 <body>
     <header is="app-header" title="Web Components" home="true"></header>
@@ -31,12 +31,12 @@
             <p>
                 You have probably heard the term <strong>component</strong> being used before. In web design it usually means reusable code (the component) that encapsulates a particular feature or functionality. This component can then be added to any web page to provide the feature or functionality to the users. Every major web development framework (some examples pictured below) either offers the ability to build with or create components that adhere to the frameworks specifications.
             </p>
-            <div class="center">
-                <banned-img src="assets/angular.webp"></banned-img>
-                <banned-img src="assets/react.webp"></banned-img>
-                <banned-img src="assets/svelte.webp"></banned-img>
-                <banned-img src="assets/vue.webp"></banned-img>
-            </div>
+            <banned-imgs>
+                <data value="assets/angular.webp">Angular</data>
+                <data value="assets/react.webp">React</data>
+                <data value="assets/svelte.webp">Svelte</data>
+                <data value="assets/vue.webp">Vue</data>
+            </banned-imgs>
             <p>
                 None of these frameworks use actual Web Components &ndash; they are actually one of the biggest reasons the Web Component standard was created &ndash; but they all <a href="https://custom-elements-everywhere.com/" target="_blank">can implement</a> (use) Web Components; some more easily than others. A Web Component, or custom component, is a native web standard and does not rely on a framework, library, transpiling, or compiling to work.
             </p>
@@ -52,10 +52,13 @@
                 <h2>Simple Examples</h2>
                 <ul>
                     <li>
-                        <a href="simple/autonomous/index.html">Autonomous Tool Tip</a>
+                        <a href="simple/autonomous/counter.html">Autonomous Counter</a>
                     </li>
                     <li>
-                        <a href="simple/built-in/index.html">Built-in Tool Tip</a>
+                        <a href="simple/autonomous/tool-tip.html">Autonomous Tool Tip</a>
+                    </li>
+                    <li>
+                        <a href="simple/built-in/tool-tip.html">Built-in Tool Tip</a>
                     </li>
                 </ul>
             </div>
